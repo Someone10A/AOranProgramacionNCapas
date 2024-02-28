@@ -1,0 +1,68 @@
+﻿@model ML.Empresa
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class"container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Empresas</h2>
+            <h5>Edita, Elimina registros o agrega a una empresa desde 0</h5>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1 offset-md-11">
+            @Html.ActionLink("+", "Form", "Empresa", new { @class = "btn btn-outline-success" })
+        </div>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <center>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Editar</th>
+                                <th>Id Empresa</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>Email</th>
+                                <th>Direccion web</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (ML.Empresa empresa in Model.Empresas)
+                            {
+                                <tr>
+                                    <td class="text-center"><a class="btn btn-primary bi bi-pencil-fill " href="@Url.Action("Form", "Empresa", new {IdEmpresa = empresa.IdEmpresa})"><i class=""></i></a></td>
+                                    <th>@empresa.IdEmpresa</th>
+                                    <th>@empresa.Nombre</th>
+                                    <th>@empresa.Telefono</th>
+                                    <th>@empresa.Email</th>
+                                    <th>@empresa.DireccionWeb</th>
+                                    <td class="text-center"><a class="btn btn-danger bi bi-trash" onclick="return confirm('¿Estas seguro de eliminar esta empresa?');" href="@Url.Action("Delete", "Empresa", new {IdEmpresa = empresa.IdEmpresa})"><i class=""></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </center>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            No se han encontrado registros
+        </div>
+    }
+</div>
+
+

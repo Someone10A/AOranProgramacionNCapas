@@ -1,0 +1,61 @@
+﻿@model ML.Empresa
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Formulario Empresas</h2>
+            <h5>Llena todos los campos y contesta para enviar el formulario</h5>
+            <hr />
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm("Form", "Empresa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.IdEmpresa, new { @class = "visually-hidden" })
+                @Html.TextBoxFor(model => model.IdEmpresa, new { @class = "visually-hidden" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Telefono)
+                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.DireccionWeb)
+                @Html.TextBoxFor(model => model.DireccionWeb, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-success" value="@ViewBag.Accion" />
+                @Html.ActionLink(" Regresar", "GetAll", "empresa", new { area = "" }, new { @class = "btn btn-danger bi bi-backspace" })
+            </div>
+        </div>
+    }
+ </div>
